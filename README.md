@@ -8,3 +8,4 @@ OpenWeatherMap API for fetching real-time weather data.
 CSS for styling the app and ensuring responsiveness across devices.
 Material UI for sleek, modern design components.
 
+You can visit the project here -> https://weather-app-mtyd.onrender.com
