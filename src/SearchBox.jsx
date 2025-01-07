@@ -6,13 +6,15 @@ export default function SearchBox({updateWeatherInfo}) {
     let [city, setCity] = useState("");
     let [error, setError] = useState(false);
 
-    const API_URL = "https://api.openweathermap.org/data/2.5/weather";
-    const API_KEY = "930875030b608c25a5ab387821f5069a";
+    const API_URL = import.meta.env.VITE_API_URL;
+    const API_KEY = import.meta.env.VITE_API_KEY;
 
     let getWeatherInfo = async() => {
         try{
             let response = await fetch(`${API_URL}?q=${city}&appid=${API_KEY}&units=metric`);
+
             let jsonResponse = await response.json();
+
             let result = {
                 city: city,
                 temp: jsonResponse.main.temp,
@@ -22,9 +24,9 @@ export default function SearchBox({updateWeatherInfo}) {
                 feelsLike: jsonResponse.main.feels_like,
                 weather: jsonResponse.weather[0].description,
             }
-            console.log(result);
+            //consol.log(result);
             return result;
-        } catch(err){
+        } catch(err){ 
             throw err;
         }
     }
@@ -36,7 +38,7 @@ export default function SearchBox({updateWeatherInfo}) {
     let handleSubmit = async (event) => {
         try {
             event.preventDefault();
-            console.log(city);
+            //console.log(city);
             setCity("");
             let NewInfo = await getWeatherInfo();
             updateWeatherInfo(NewInfo);
